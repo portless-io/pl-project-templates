@@ -34,6 +34,8 @@ github.com/mejik-dev/microgen-v3-go v0.0.0-20220822140838-b94d4bedd4b8 h1:vyagaV
 github.com/mejik-dev/microgen-v3-go v0.0.0-20220822140838-b94d4bedd4b8/go.mod h1:zLNm00AhV7WRffKq4llc3/w42FuxY7hZMkUVzAVBU7M=
 github.com/mejik-dev/microgen-v3-go v0.0.0-20220824155449-688f85acf407 h1:5mFd8loqoiTatTGH4HAivxiLGT2ddWqU0Io9r5mJQiM=
 github.com/mejik-dev/microgen-v3-go v0.0.0-20220824155449-688f85acf407/go.mod h1:zLNm00AhV7WRffKq4llc3/w42FuxY7hZMkUVzAVBU7M=
+github.com/mejik-dev/microgen-v3-go v0.0.0-20220824164941-d835c7627292 h1:ODw/bTSfYjIlcZn7J+zNiTCYzm209VqrZTKDLl7VVK4=
+github.com/mejik-dev/microgen-v3-go v0.0.0-20220824164941-d835c7627292/go.mod h1:zLNm00AhV7WRffKq4llc3/w42FuxY7hZMkUVzAVBU7M=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/segmentio/encoding v0.2.19 h1:Kshkmoz080qvUtdtakR8Bjk2sIlLS8wSvijFMEHRGow=

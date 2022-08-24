@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/labstack/echo/v4 v4.7.2
-	github.com/mejik-dev/microgen-v3-go v0.0.0-20220824155449-688f85acf407
+	github.com/mejik-dev/microgen-v3-go v0.0.0-20220824164941-d835c7627292
 )
 
 require (
