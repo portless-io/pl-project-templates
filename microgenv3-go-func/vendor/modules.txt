@@ -35,7 +35,7 @@ github.com/mattn/go-colorable
 # github.com/mattn/go-isatty v0.0.14
 ## explicit; go 1.12
 github.com/mattn/go-isatty
-# github.com/mejik-dev/microgen-v3-go v0.0.0-20220822140838-b94d4bedd4b8
+# github.com/mejik-dev/microgen-v3-go v0.0.0-20220824155449-688f85acf407
 ## explicit; go 1.18
 github.com/mejik-dev/microgen-v3-go
 github.com/mejik-dev/microgen-v3-go/client
