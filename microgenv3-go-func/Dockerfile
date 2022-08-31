@@ -1,7 +1,6 @@
 FROM golang:1.18.5-alpine
 WORKDIR /app
-
 COPY . .
-
-
-CMD ["go","run", "server.go"]
+RUN go mod tidy
+RUN go build -o /entry_point server.go
+CMD ["/entry_point"]
