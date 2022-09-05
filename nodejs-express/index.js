@@ -32,11 +32,22 @@ app.post("/products", async (req, res) => {
   res.status(response.status).send(response.data)
 })
 
-app.patch("/products/:id", async (req, res) => {
-  const id = req.params.id
-  const body = {}
+app.get("/products/:id", async (req, res) => {
+  const { id } = req.params
 
-  const response = await client.service("products").updateById(id, body)
+  const response = await client.service("products").getById(id)
+  
+  if(response.error) {
+    return res.status(response.status).send(response.error)
+  }
+
+  res.status(response.status).send(response.data)
+})
+
+app.patch("/products/:id", async (req, res) => {
+  const { id } = req.params
+
+  const response = await client.service("products").updateById(id, req.body)
   
   if(response.error) {
     return res.status(response.status).send(response.error)
@@ -46,10 +57,9 @@ app.patch("/products/:id", async (req, res) => {
 })
   
 app.delete("/products/:id", async (req, res) => {
-  const id = req.params.id
-  const body = {}
+  const { id } = req.params
 
-  const response = await client.service("products").updateById(id, body)
+  const response = await client.service("products").deleteById(id)
   
   if(response.error) {
     return res.status(response.status).send(response.error)
