@@ -18,7 +18,7 @@ app.get("/products", async (req, res) => {
   if(response.error) {
     if (response.error.message === "project not found") {
       return res.status(response.status).send({
-        message: "please check your project or api key."
+        message: "failed to connect to your project, please check if the api had been set properly."
       })
     }
 
@@ -34,7 +34,7 @@ app.post("/products", async (req, res) => {
   if(response.error) {
     if (response.error.message === "project not found") {
       return res.status(response.status).send({
-        message: "please check your project or api key."
+        message: "failed to connect to your project, please check if the api had been set properly."
       })
     }
 
@@ -52,7 +52,7 @@ app.get("/products/:id", async (req, res) => {
   if(response.error ) {
     if (response.error.message === "project not found") {
       return res.status(response.status).send({
-        message: "please check your project or api key."
+        message: "failed to connect to your project, please check if the api had been set properly."
       })
     }
 
@@ -70,7 +70,7 @@ app.patch("/products/:id", async (req, res) => {
   if(response.error) {
     if (response.error.message === "project not found") {
       return res.status(response.status).send({
-        message: "please check your project or api key."
+        message: "failed to connect to your project, please check if the api had been set properly."
       })
     }
 
@@ -88,7 +88,7 @@ app.delete("/products/:id", async (req, res) => {
   if(response.error) {
     if (response.error.message === "project not found") {
       return res.status(response.status).send({
-        message: "please check your project or api key."
+        message: "failed to connect to your project, please check if the api had been set properly."
       })
     }
 

@@ -28,7 +28,7 @@ func main() {
 		if err != nil {
 			if err.Message == "project not found" {
 				return c.JSON(err.Status, map[string]interface{}{
-					"message": "please check your project or api key.",
+					"message": "failed to connect to your project, please check if the api had been set properly.",
 				})
 			}
 
@@ -49,7 +49,7 @@ func main() {
 		if err != nil {
 			if err.Message == "project not found" {
 				return c.JSON(err.Status, map[string]interface{}{
-					"message": "please check your project or api key.",
+					"message": "failed to connect to your project, please check if the api had been set properly.",
 				})
 			}
 
@@ -71,7 +71,7 @@ func main() {
 		if err != nil {
 			if err.Message == "project not found" {
 				return c.JSON(err.Status, map[string]interface{}{
-					"message": "please check your project or api key.",
+					"message": "failed to connect to your project, please check if the api had been set properly.",
 				})
 			}
 
@@ -87,7 +87,7 @@ func main() {
 		if err != nil {
 			if err.Message == "project not found" {
 				return c.JSON(err.Status, map[string]interface{}{
-					"message": "please check your project or api key.",
+					"message": "failed to connect to your project, please check if the api had been set properly.",
 				})
 			}
 
@@ -103,7 +103,7 @@ func main() {
 		if err != nil {
 			if err.Message == "project not found" {
 				return c.JSON(err.Status, map[string]interface{}{
-					"message": "please check your project or api key.",
+					"message": "failed to connect to your project, please check if the api had been set properly.",
 				})
 			}
 
