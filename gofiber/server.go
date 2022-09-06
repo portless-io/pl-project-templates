@@ -3,10 +3,13 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/mejik-dev/microgen-v3-go"
 )
+
+var API_KEY = os.Getenv("API_KEY")
 
 func main() {
 	app := fiber.New()
@@ -15,14 +18,20 @@ func main() {
 		return c.SendString("Hello, World!")
 	})
 
-	client := microgen.NewClient("91b22a79-4800-44f0-8d6c-61b8f7627c23", microgen.DefaultURL())
+	client := microgen.NewClient(API_KEY, microgen.DefaultURL())
 
 	products := app.Group("/products")
 
 	products.Get("", func(c *fiber.Ctx) error {
 		resp, err := client.Service("products").Find()
 		if err != nil {
-			return c.Status(http.StatusNonAuthoritativeInfo).JSON(err)
+			if err.Message == "project not found" {
+				return c.Status(err.Status).JSON(map[string]interface{}{
+					"message": "please check your project or api key.",
+				})
+			}
+
+			return c.Status(err.Status).JSON(err)
 		}
 
 		return c.Status(http.StatusOK).JSON(resp.Data)
@@ -37,7 +46,13 @@ func main() {
 
 		resp, err := client.Service("products").Create(body)
 		if err != nil {
-			return c.Status(http.StatusNonAuthoritativeInfo).JSON(err)
+			if err.Message == "project not found" {
+				return c.Status(err.Status).JSON(map[string]interface{}{
+					"message": "please check your project or api key.",
+				})
+			}
+
+			return c.Status(err.Status).JSON(err)
 		}
 
 		return c.Status(http.StatusOK).JSON(resp.Data)
@@ -47,7 +62,13 @@ func main() {
 		id := c.Params("id")
 		resp, err := client.Service("products").GetByID(id)
 		if err != nil {
-			return c.Status(http.StatusNonAuthoritativeInfo).JSON(err)
+			if err.Message == "project not found" {
+				return c.Status(err.Status).JSON(map[string]interface{}{
+					"message": "please check your project or api key.",
+				})
+			}
+
+			return c.Status(err.Status).JSON(err)
 		}
 
 		return c.Status(http.StatusOK).JSON(resp.Data)
@@ -63,7 +84,13 @@ func main() {
 
 		resp, err := client.Service("products").UpdateByID(id, body)
 		if err != nil {
-			return c.Status(http.StatusNonAuthoritativeInfo).JSON(err)
+			if err.Message == "project not found" {
+				return c.Status(err.Status).JSON(map[string]interface{}{
+					"message": "please check your project or api key.",
+				})
+			}
+
+			return c.Status(err.Status).JSON(err)
 		}
 
 		return c.Status(http.StatusOK).JSON(resp.Data)
@@ -73,7 +100,13 @@ func main() {
 		id := c.Params("id")
 		resp, err := client.Service("products").DeleteByID(id)
 		if err != nil {
-			return c.Status(http.StatusNonAuthoritativeInfo).JSON(err)
+			if err.Message == "project not found" {
+				return c.Status(err.Status).JSON(map[string]interface{}{
+					"message": "please check your project or api key.",
+				})
+			}
+
+			return c.Status(err.Status).JSON(err)
 		}
 
 		return c.Status(http.StatusOK).JSON(resp.Data)
