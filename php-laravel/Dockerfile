@@ -10,4 +10,4 @@ WORKDIR /app
 COPY . /app
 RUN composer install
 
-CMD php artisan serve
+CMD php artisan optimize:clear && php artisan serve

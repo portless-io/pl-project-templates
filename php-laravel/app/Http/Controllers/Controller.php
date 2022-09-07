@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -22,6 +22,11 @@ class Controller extends BaseController
         $this->client = app(MicrogenClient::class);
     }
 
+    /**
+     * Get all products.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getProducts() {
         $res = $this->client->service('products')->find();
 
@@ -41,6 +46,12 @@ class Controller extends BaseController
         return response()->json($res['data']);
     }
 
+    /**
+     * Get product by id.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
     public function getProductById($id) {
         $res = $this->client->service('products')->getById($id);
 
@@ -60,8 +71,20 @@ class Controller extends BaseController
         return response()->json($res['data']);
     }
 
+    /**
+     * Create product.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function createProduct(Request $request) {
-        $res = $this->client->service('products')->create($request);
+        $body = $request->all();
+
+        if (count($body) == 0) {
+            return response()->json(['message' => 'request body cannot be empty'], 400);
+        }
+
+        $res = $this->client->service('products')->create($body);
 
         if (!is_null($res['error'])) {
             if ($res['error']['message'] === "project not found") {
@@ -79,8 +102,21 @@ class Controller extends BaseController
         return response()->json($res['data']);
     }
 
+    /**
+     * Update the given product.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
     public function updateProduct(Request $request, $id) {
-        $res = $this->client->service('products')->updateById($id, $request);
+        $body = $request->all();
+
+        if (count($body) == 0) {
+            return response()->json(['message' => 'request body cannot be empty'], 400);
+        }
+
+        $res = $this->client->service('products')->updateById($id, $body);
 
         if (!is_null($res['error'])) {
             if ($res['error']['message'] === "project not found") {
@@ -98,6 +134,12 @@ class Controller extends BaseController
         return response()->json($res['data']);
     }
 
+    /**
+     * Delete product by id.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
     public function deleteProduct($id) {
         $res = $this->client->service('products')->deleteById($id);
 
