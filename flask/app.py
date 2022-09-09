@@ -142,7 +142,4 @@ def deleteProduct(id):
         return jsonify({"message": "error occured: " + e.__str__()})
 
 if __name__ == "__main__":
-    if api_key == "":
-        print("api key is required", file=stderr)
-
     app.run(debug=True)
