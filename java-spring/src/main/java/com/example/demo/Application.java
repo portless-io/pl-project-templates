@@ -33,6 +33,11 @@ public class Application implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
       String apiKey = env.getProperty("API_KEY");
+
+      if(apiKey == null || apiKey.isEmpty()) {
+        System.out.println("api key is required.");
+      }
+
       this.PRODUCT_SERVICE_URL = this.BASE_URL + "/" + apiKey + "/products";
   }
 
