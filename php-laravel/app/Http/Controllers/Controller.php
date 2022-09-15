@@ -30,7 +30,7 @@ class Controller extends BaseController
     public function getProducts() {
         $res = $this->client->service('products')->find();
 
-        if (!is_null($res['error'])) {
+        if (array_key_exists('error', $res)) {
             if ($res['error']['message'] === "project not found") {
                 return response()->json(
                     [
@@ -55,7 +55,7 @@ class Controller extends BaseController
     public function getProductById($id) {
         $res = $this->client->service('products')->getById($id);
 
-        if (!is_null($res['error'])) {
+        if (array_key_exists('error', $res)) {
             if ($res['error']['message'] === "project not found") {
                 return response()->json(
                     [
@@ -86,7 +86,7 @@ class Controller extends BaseController
 
         $res = $this->client->service('products')->create($body);
 
-        if (!is_null($res['error'])) {
+        if (array_key_exists('error', $res)) {
             if ($res['error']['message'] === "project not found") {
                 return response()->json(
                     [
@@ -118,7 +118,7 @@ class Controller extends BaseController
 
         $res = $this->client->service('products')->updateById($id, $body);
 
-        if (!is_null($res['error'])) {
+        if (array_key_exists('error', $res)) {
             if ($res['error']['message'] === "project not found") {
                 return response()->json(
                     [
@@ -143,7 +143,7 @@ class Controller extends BaseController
     public function deleteProduct($id) {
         $res = $this->client->service('products')->deleteById($id);
 
-        if (!is_null($res['error'])) {
+        if (array_key_exists('error', $res)) {
             if ($res['error']['message'] === "project not found") {
                 return response()->json(
                     [
