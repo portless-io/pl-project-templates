@@ -19,6 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/', function () {
+    return 'hello world';
+});
+
 Route::prefix('products')->group(function() {
     Route::get('/', [Controller::class, 'getProducts']);
     Route::post('/', [Controller::class, 'createProduct']);
