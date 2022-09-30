@@ -22,7 +22,7 @@ app.get("/products", async (req, res) => {
       })
     }
 
-    return res.status(response.status).send(err)
+    return res.status(response.status).send(response.error)
   }
 
   res.status(response.status).send(response.data)
@@ -38,7 +38,7 @@ app.post("/products", async (req, res) => {
       })
     }
 
-    return res.status(response.status).send(err)
+    return res.status(response.status).send(response.error)
   }
 
   res.status(response.status).send(response.data)
@@ -56,7 +56,7 @@ app.get("/products/:id", async (req, res) => {
       })
     }
 
-    return res.status(response.status).send(err)
+    return res.status(response.status).send(response.error)
   }
 
   res.status(response.status).send(response.data)
@@ -74,7 +74,7 @@ app.patch("/products/:id", async (req, res) => {
       })
     }
 
-    return res.status(response.status).send(err)
+    return res.status(response.status).send(response.error)
   }
 
   res.status(response.status).send(response.data)
@@ -92,7 +92,7 @@ app.delete("/products/:id", async (req, res) => {
       })
     }
 
-    return res.status(response.status).send(err)
+    return res.status(response.status).send(response.error)
   }
 
   res.status(response.status).send(response.data)
