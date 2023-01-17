@@ -19,11 +19,11 @@ const SMTP = async (req, res) => {
         };
 
         const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
-            port: process.env.SMTP_PORT,
+            host: "smtp-relay.sendinblue.com",
+            port: 587,
             auth: {
-                user: process.env.SMTP_EMAIL_ADDRESS,
-                pass: process.env.SMTP_EMAIL_PASSWORD,
+                user: "mejik.dev@gmail.com",
+                pass: "LQ8cHpkEqPXaAmR1",
             },
         });
 
@@ -35,9 +35,6 @@ const SMTP = async (req, res) => {
         return res.status(400).json({ error });
     }
 };
-
-app.post("/sendEmail", SMTP);
-
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
