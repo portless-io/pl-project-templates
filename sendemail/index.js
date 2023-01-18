@@ -1,5 +1,5 @@
 const express = require("express");
-const nodemailer = require("nodemailer")
+var SibApiV3Sdk = require('sib-api-v3-sdk');
 require("dotenv").config()
 
 const app = express();
@@ -10,26 +10,26 @@ app.use(express.urlencoded({ extended: false }));
 
 const SMTP = async (req, res) => {
     try {
-        const { from = "automation@microgen.id", to, subject = "Lorem Ipsum", content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." } = req.body;
-        const mailOptions = {
-            from,
-            to,
-            subject,
-            html: content,
-        };
+        const { from = "automation@microgen.id", to, subject = "Lorem Ipsum", content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." } = req.body; 
 
-        const transporter = nodemailer.createTransport({
-            host: "smtp-relay.sendinblue.com",
-            port: 587,
-            auth: {
-                user: "mejik.dev@gmail.com",
-                pass: "LQ8cHpkEqPXaAmR1",
-            },
-        });
+        var defaultClient = SibApiV3Sdk.ApiClient.instance;
+        var apiKey = defaultClient.authentications['api-key'];
+        apiKey.apiKey = process.env.SIB_API_KEY;
 
-        const { response } = await transporter.sendMail(mailOptions);
+        const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
-        return res.status(200).json({ message: response });
+        const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+
+
+        sendSmtpEmail.to = [{ email: to }];
+        sendSmtpEmail.sender = { email: from };
+        sendSmtpEmail.htmlContent = content;
+        sendSmtpEmail.textContent = content;
+        sendSmtpEmail.subject = subject;
+
+        const result = await apiInstance.sendTransacEmail(sendSmtpEmail);
+
+        return res.status(200).json({ message: result });
     } catch (error) {
         console.log("error log : ", error);
         return res.status(400).json({ error });
