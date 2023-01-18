@@ -1,5 +1,8 @@
 # Emailing Function Template
 
+## Setup Running API
+set .env file SIB_API_KEY
+
 ### Api Docs
 {{URL}}/sendEmail
 ```
