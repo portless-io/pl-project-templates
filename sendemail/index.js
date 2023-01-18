@@ -28,6 +28,8 @@ const SMTP = async (req, res) => {
 
         const result = await apiInstance.sendTransacEmail(sendSmtpEmail);
 
+        console.log("email sent to: " + to);
+
         return res.status(200).json({ message: result });
     } catch (error) {
         console.log("error log : ", error);
