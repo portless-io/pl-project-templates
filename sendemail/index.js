@@ -1,5 +1,5 @@
 const express = require("express");
-var SibApiV3Sdk = require('sib-api-v3-sdk');
+const SibApiV3Sdk = require('sib-api-v3-sdk');
 require("dotenv").config()
 
 const app = express();
@@ -12,14 +12,13 @@ const SMTP = async (req, res) => {
     try {
         const { from = "automation@microgen.id", to, subject = "Lorem Ipsum", content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." } = req.body; 
 
-        var defaultClient = SibApiV3Sdk.ApiClient.instance;
-        var apiKey = defaultClient.authentications['api-key'];
+        const defaultClient = SibApiV3Sdk.ApiClient.instance;
+        const apiKey = defaultClient.authentications['api-key'];
         apiKey.apiKey = process.env.SIB_API_KEY;
 
         const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
         const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
-
 
         sendSmtpEmail.to = [{ email: to }];
         sendSmtpEmail.sender = { email: from };
