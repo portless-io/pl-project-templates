@@ -4,8 +4,7 @@ const app = express()
 const port = 3000
 
 const client = new microgenV3.MicrogenClient({
-  apiKey: process.env.API_KEY,
-  host: "stagingv3.microgen.id",
+  apiKey: process.env.API_KEY
 })
 
 app.get('/', async (req, res) => {
