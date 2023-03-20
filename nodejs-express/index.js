@@ -1,7 +1,7 @@
 const microgenV3 = require("microgen-v3-sdk")
 const express = require('express')
 const app = express()
-const port = 3002
+const port = 3000
 
 const client = new microgenV3.MicrogenClient({
   apiKey: process.env.API_KEY,
